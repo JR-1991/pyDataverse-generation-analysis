@@ -21,13 +21,13 @@ This repository demonstrates multiple OpenAPI code generation tools for the pyDa
 - `api/v1/datasets` POST request for dataset creation
 - Response and Request-Body schemes for almost all endpoints missing
 - Existing request body schemes
-  - /api/v1/dataverses/{identifier}/roles
-  - /api/v1/roles
+  - `/api/v1/dataverses/{identifier}/roles`
+  - `/api/v1/roles`
 - Authentication information missing
 
 ### Specific issues
 
-*/api/v1/files/{id}/metadata*
+*`/api/v1/files/{id}/metadata`*
 
 - `versionId` is expected within the path, but is not included
 - Maybe it is a query parameter?
