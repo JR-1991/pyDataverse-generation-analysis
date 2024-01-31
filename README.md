@@ -55,22 +55,28 @@ some/path/{id}:
 
 ### [OpenAPI Generator](https://openapi-generator.tech)
 
-- Basic Python --> `oai_generator/python/basic`
-- PyDantic Python --> `oai_generator/python/pydantic`
+Below is a list of SDK that have been generated based on pyDataverse's OAI spec:
+
+- [Basic Python](./openapi-generator/pydantic)
+- [PyDantic Python](./openapi-generator/pydantic)
+- [Typescript-axios](./openapi-generator/typescript)
+- [Rust](./openapi-generator/rust)
 
 #### Features
 
-- TypeScript Python --> `oai_generator/typescript`
 - OpenAPI generator allows to preserve existing objects
   - https://openapi-generator.tech/docs/usage/#target-external-models
 
 ### [Speakeasy](https://www.speakeasyapi.dev)
 
-- Python --> `speakeasy/python`
-- Typescript --> `speakeasy/typescript`
+Below is a list of SDK that have been generated based on pyDataverse's OAI spec:
+
+- [Python](./speakeasy/python)
+- [Typescript](./speakeasy/typescript)
 
 #### Features
 
-- Well-structured code and less lines necessary
-- Allows to customize the generated code beyond the OpenAPI specification
+- Well-structured code and less lines
+- Python generator based on `dataclasses` and thus less dependent on third-party libs
+- Allows to customize the generated code beyond OpenAPI specification
   - https://www.speakeasyapi.dev/docs/openapi/best-practices#extending-openapi 
