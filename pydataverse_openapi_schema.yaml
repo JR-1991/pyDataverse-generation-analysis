@@ -1,0 +1,946 @@
+openapi: 3.0.0
+info:
+  title: pyDataverse
+  version: 1.0.0
+servers:
+  - url: http://dvn-cloud-app-1.lib.harvard.edu:8080/
+    description: Default Server.
+  - url: http://dvn-cloud-app-1.lib.harvard.edu:8009/
+    description: Default Server.
+  - url: https://dvn-cloud-app-1.lib.harvard.edu:8181/
+    description: Default Server.
+security:
+  - ApiKeyAuth: []
+paths:
+  /api/v1/datasets/export:
+    get:
+      tags:
+        - Native
+      operationId: exportDataset
+      parameters:
+        - name: persistentId
+          in: query
+          schema:
+            type: string
+        - name: exporter
+          in: query
+          schema:
+            type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            application/xml:
+              schema:
+                type: object
+            application/json:
+              schema:
+                type: object
+            application/html:
+              schema:
+                type: object
+            application/ld+json:
+              schema:
+                type: object
+  /api/v1/datasets/{identifier}/assignments:
+    get:
+      tags:
+        - Native
+      operationId: getAssignments
+      parameters:
+        - name: identifier
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+    post:
+      tags:
+        - Native
+      operationId: createAssignment
+      parameters:
+        - name: identifier
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: key
+          in: query
+          schema:
+            type: string
+      requestBody:
+        content:
+          "*/*":
+            schema:
+              $ref: "#/components/schemas/RoleAssignmentDTO"
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+  /api/v1/datasets/{id}:
+    get:
+      tags:
+        - Native
+      operationId: getDataset
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+    delete:
+      tags:
+        - Native
+      operationId: deleteDataset
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+  /api/v1/datasets/:persistentId:
+    get:
+      tags:
+        - Native
+      operationId: getDatasetByPid
+      parameters:
+        - name: persistentId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+  /api/v1/datasets/{id}/add:
+    post:
+      tags:
+        - Native
+      operationId: addFileToDataset
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+  /api/v1/datasets/{id}/destroy:
+    delete:
+      tags:
+        - Native
+      operationId: destroyDataset
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+  /api/v1/datasets/{id}/editMetadata:
+    put:
+      tags:
+        - Native
+      operationId: editVersionMetadata
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: replace
+          in: query
+          schema:
+            type: boolean
+      requestBody:
+        content:
+          "*/*":
+            schema:
+              type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+  /api/v1/datasets/{id}/privateUrl:
+    get:
+      tags:
+        - Native
+      operationId: getPrivateUrlData
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+    post:
+      tags:
+        - Native
+      operationId: createPrivateUrl
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: anonymizedAccess
+          in: query
+          schema:
+            type: boolean
+            default: "false"
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+    delete:
+      tags:
+        - Native
+      operationId: deletePrivateUrl
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+  /api/v1/datasets/{id}/versions:
+    get:
+      tags:
+        - Native
+      operationId: listVersions
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+  /api/v1/datasets/{id}/versions/{versionId}:
+    get:
+      tags:
+        - Native
+      operationId: getVersion
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: versionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+    put:
+      tags:
+        - Native
+      operationId: updateDraftVersion
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: versionId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+    delete:
+      tags:
+        - Native
+      operationId: deleteDraftVersion
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: versionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+  /api/v1/dataverses/{identifier}:
+    get:
+      tags:
+        - Native
+      operationId: viewDataverse
+      parameters:
+        - name: identifier
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+    post:
+      tags:
+        - Native
+      operationId: addDataverse
+      parameters:
+        - name: identifier
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          "*/*":
+            schema:
+              type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+    delete:
+      tags:
+        - Native
+      operationId: deleteDataverse
+      parameters:
+        - name: identifier
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+  /api/v1/dataverses/{identifier}/actions/:publish:
+    post:
+      tags:
+        - Native
+      operationId: publishDataverse
+      parameters:
+        - name: identifier
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+  /api/v1/dataverses/{identifier}/contents:
+    get:
+      tags:
+        - Native
+      operationId: listContent
+      parameters:
+        - name: identifier
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+  /api/v1/dataverses/{identifier}/datasets/:import:
+    post:
+      tags:
+        - Native
+      operationId: importDataset
+      parameters:
+        - name: identifier
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: pid
+          in: query
+          schema:
+            type: string
+        - name: release
+          in: query
+          schema:
+            type: string
+      requestBody:
+        content:
+          "*/*":
+            schema:
+              type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+  /api/v1/dataverses/{identifier}/facets:
+    get:
+      tags:
+        - Native
+      operationId: listFacets
+      parameters:
+        - name: identifier
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+    post:
+      tags:
+        - Native
+      operationId: setFacets
+      parameters:
+        - name: identifier
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          "*/*":
+            schema:
+              type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/dataverses/{identifier}/roles:
+    get:
+      tags:
+        - Native
+      operationId: listRoles
+      parameters:
+        - name: identifier
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+    post:
+      tags:
+        - Native
+      operationId: createRole
+      parameters:
+        - name: identifier
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          "*/*":
+            schema:
+              $ref: "#/components/schemas/RoleDTO"
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+  /api/v1/files/{id}:
+    get:
+      tags:
+        - Native
+      operationId: getFileData
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+    delete:
+      tags:
+        - Native
+      operationId: deleteFileInDataset
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+  /api/v1/files/{id}/metadata:
+    get:
+      tags:
+        - Native
+      operationId: getFileMetadata
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: versionId
+          in: query
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          "*/*":
+            schema:
+              type: boolean
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+    post:
+      tags:
+        - Native
+      operationId: updateFileMetadata
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          "*/*":
+            schema:
+              type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+  /api/v1/files/{id}/redetect:
+    post:
+      tags:
+        - Native
+      operationId: redetectDatafile
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: dryRun
+          in: query
+          schema:
+            type: boolean
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+  /api/v1/files/{id}/reingest:
+    post:
+      tags:
+        - Native
+      operationId: reingest
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+  /api/v1/files/{id}/replace:
+    post:
+      tags:
+        - Native
+      operationId: replaceFileInDataset
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+  /api/v1/files/{id}/restrict:
+    put:
+      tags:
+        - Native
+      operationId: restrictFileInDataset
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          "*/*":
+            schema:
+              type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+  /api/v1/files/{id}/uningest:
+    post:
+      tags:
+        - Native
+      operationId: uningestDatafile
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+  /api/v1/info/apiTermsOfUse:
+    get:
+      tags:
+        - Native
+      operationId: getTermsOfUse
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+  /api/v1/info/server:
+    get:
+      tags:
+        - Native
+      operationId: getServer
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+  /api/v1/info/version:
+    get:
+      tags:
+        - Native
+      operationId: getInfo
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+  /api/v1/metadatablocks:
+    get:
+      tags:
+        - Native
+      operationId: list
+      responses:
+        default:
+          description: Default Response.
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/metadatablocks/{identifier}:
+    get:
+      tags:
+        - Native
+      operationId: getBlock
+      parameters:
+        - name: identifier
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/roles:
+    post:
+      tags:
+        - Native
+      operationId: createNewRole
+      parameters:
+        - name: dvo
+          in: query
+          schema:
+            type: string
+      requestBody:
+        content:
+          "*/*":
+            schema:
+              $ref: "#/components/schemas/RoleDTO"
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+  /api/v1/roles/{id}:
+    get:
+      tags:
+        - Native
+      operationId: viewRole
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+    delete:
+      tags:
+        - Native
+      operationId: deleteRole
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+  /api/v1/users/:me:
+    get:
+      tags:
+        - Native
+      operationId: getAuthenticatedUserByToken
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+  /api/v1/users/token:
+    get:
+      tags:
+        - Native
+      operationId: getTokenExpirationDate
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+    delete:
+      tags:
+        - Native
+      operationId: deleteToken
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+  /api/v1/users/token/recreate:
+    post:
+      tags:
+        - Native
+      operationId: recreateToken
+      responses:
+        default:
+          description: Default Response.
+          content:
+            "*/*":
+              schema:
+                type: object
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Dataverse-key
+  schemas:
+    RoleAssignmentDTO:
+      type: object
+      properties:
+        assignee:
+          type: string
+        role:
+          type: string
+    RoleDTO:
+      type: object
+      properties:
+        alias:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        ownerId:
+          type: string
+        permissions:
+          type: string
