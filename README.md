@@ -6,7 +6,7 @@ This repository demonstrates multiple OpenAPI code generation tools for the pyDa
 > These are all the relevant files and their descriptions:
 > 
 > - `pydataverse_openapi_schema.yaml` - Contains the OpenAPI specification for the pyDataverse NativeAPI
-> - `pydataverse_nativeapi_paths.txt` - Collection of paths already implemented in pyDataverse's NativeAPI
+> - `pydataverse_nativeapi_paths.txt` - Collection of paths in pyDataverse's NativeAPI
 > - `dataverse_5_14_openapi_schema.yaml` - Contains the OpenAPI specification for Dataverse 5.14
 > - `openapi_generator` - Contains the generated code from OpenAPI Generator
 > - `speakeasy` - Contains the generated code from Speakeasy
