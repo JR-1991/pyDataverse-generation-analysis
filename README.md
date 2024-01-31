@@ -55,8 +55,8 @@ some/path/{id}:
 
 ### [OpenAPI Generator](https://openapi-generator.tech)
 
-Basic Python --> `oai_generator/python/basic`
-PyDantic Python --> `oai_generator/python/pydantic`
+- Basic Python --> `oai_generator/python/basic`
+- PyDantic Python --> `oai_generator/python/pydantic`
 
 #### Features
 
@@ -66,8 +66,8 @@ PyDantic Python --> `oai_generator/python/pydantic`
 
 ### [Speakeasy](https://www.speakeasyapi.dev)
 
-Python --> `speakeasy/python`
-Typescript --> `speakeasy/typescript`
+- Python --> `speakeasy/python`
+- Typescript --> `speakeasy/typescript`
 
 #### Features
 
