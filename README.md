@@ -55,10 +55,10 @@ some/path/{id}:
 
 ### [OpenAPI Generator](https://openapi-generator.tech)
 
-Below is a list of SDK that have been generated based on pyDataverse's OAI spec:
+Below is a list of SDKs that have been generated based on pyDataverse's OAI spec:
 
 - [Basic Python](./openapi-generator/pydantic)
-- [PyDantic Python](./openapi-generator/pydantic)
+- [pyDantic Python](./openapi-generator/pydantic)
 - [Typescript-axios](./openapi-generator/typescript)
 - [Rust](./openapi-generator/rust)
 
@@ -69,7 +69,7 @@ Below is a list of SDK that have been generated based on pyDataverse's OAI spec:
 
 ### [Speakeasy](https://www.speakeasyapi.dev)
 
-Below is a list of SDK that have been generated based on pyDataverse's OAI spec:
+Below is a list of SDKs that have been generated based on pyDataverse's OAI spec:
 
 - [Python](./speakeasy/python)
 - [Typescript](./speakeasy/typescript)
